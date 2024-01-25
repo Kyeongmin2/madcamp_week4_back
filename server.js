@@ -150,7 +150,6 @@ io.on('connection', (socket) => {
             });
         };
 
-
         socket.broadcast.emit('join_user',{
             id: newPlayer.id,
             nickname: newPlayer.nickname,
@@ -188,12 +187,16 @@ io.on('connection', (socket) => {
     });
 
     socket.on('shoot_fire', (data) => {
-        console.log('불', data)
         io.emit('fires', data);
     });
 
     socket.on('knifeswing', (data) => {
         io.emit('knifeswings', data);
+    });
+
+    socket.on('bombthrowing', (data) => {
+        console.log('폭탄', data)
+        io.emit('bombs', data);
     });
     
     socket.on('collision', (data)=>{
@@ -207,6 +210,7 @@ io.on('connection', (socket) => {
     socket.on('deathknife', (dead_user, knifeswing)=>{
         io.emit('killed', dead_user, knifeswing)
     });
+    
 
     socket.on('eat_item', (item_id)=>{
         delete items[item_id];
