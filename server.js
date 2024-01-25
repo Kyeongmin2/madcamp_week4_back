@@ -195,7 +195,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on('bombthrowing', (data) => {
-        console.log('폭탄', data)
         io.emit('bombs', data);
     });
     
@@ -206,11 +205,6 @@ io.on('connection', (socket) => {
     socket.on('death', (dead_user, bullet)=>{
         io.emit('killed', dead_user, bullet);
     });
-
-    socket.on('deathknife', (dead_user, knifeswing)=>{
-        io.emit('killed', dead_user, knifeswing)
-    });
-    
 
     socket.on('eat_item', (item_id)=>{
         delete items[item_id];
