@@ -122,7 +122,6 @@ io.on('connection', (socket) => {
       console.log(`${socket.id}님이 ${reason}의 이유로 퇴장하셨습니다. `);
       endGame(socket);
       io.sockets.emit('leave_user', socket.id);
-    
     });
 
     socket.on('username', (nickname) =>{
